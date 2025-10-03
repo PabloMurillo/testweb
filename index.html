@@ -1,395 +1,365 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aitiip · K‑Messe 2025 · App informativa</title>
-  <meta name="description" content="App informativa del viaje de Aitiip a K‑Messe 2025: itinerario, logística, mapas, búsqueda, filtros y estilo bávaro." />
-  <link rel="icon" href="/favicon.ico" />
-  <!-- Tailwind (Play CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Fuentes: Merriweather (cuerpo) + UnifrakturCook (display Oktoberfest) -->
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet" />
-  <style>
-    :root{
-      --bavarian-blue:#0B74B8; /* Azul bávaro */
-      --bavarian-blue-dark:#085a8f;
-      --gold:#E8A60C; /* acento */
-      --bg:#f7fafc; /* base clara */
-      --fg:#1f2937; /* gris pizarra */
-      --card:#ffffff;
-    }
-    body{ background:var(--bg); color:var(--fg); font-family:'Merriweather', serif; }
-    .font-okt{ font-family:'UnifrakturCook', cursive; letter-spacing:.5px; }
-
-    /* Patrón de rombos bávaros para el header */
-    .bavarian-banner{
-      --s:32px; /* tamaño del rombo */
-      background: conic-gradient(from 45deg, var(--bavarian-blue) 25%, #fff 0 50%, var(--bavarian-blue) 0 75%, #fff 0) 0 0/var(--s) var(--s);
-      filter:saturate(1.1);
-    }
-
-    .topbar{ backdrop-filter:blur(8px); background:rgba(255,255,255,.85); border-bottom:4px solid var(--gold); }
-    .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .9rem; border-radius:.75rem; border:1px solid rgba(0,0,0,.08); background:#fff; transition:.15s transform ease; }
-    .btn:hover{ transform:translateY(-1px); }
-
-    .card{ background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:1rem; box-shadow:0 8px 20px rgba(0,0,0,.06) }
-    .badge{ display:inline-flex; align-items:center; gap:.4rem; border-radius:9999px; padding:.2rem .6rem; font-size:.75rem; font-weight:700; border:2px solid var(--bavarian-blue); color:var(--bavarian-blue-dark); background:#fff }
-
-    /* Línea temporal */
-    .timeline-line{ position:absolute; left:1rem; top:.5rem; bottom:0; width:4px; background:linear-gradient(180deg, var(--gold), rgba(232,166,12,.2)); border-radius:999px }
-    .timeline-node{ position:absolute; left:1rem; transform:translate(-50%,0); width:34px; height:34px; border-radius:999px; background:#fff; border:3px solid var(--bavarian-blue); display:grid; place-items:center }
-
-    /* Print minimal */
-    @media print{ #topbar, #controls, footer{ display:none!important } body{ background:#fff!important } .card{ box-shadow:none; border:1px solid #e5e7eb } }
-
-    /* Debug panel (se muestra con ?debug=1) */
-    #debug{ position:fixed; bottom:12px; right:12px; width:320px; max-height:50vh; overflow:auto; background:#fff; border:1px solid #ddd; border-left:4px solid #0B74B8; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,.15); padding:12px; font:12px/1.25 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; display:none }
-    #debug pre{ white-space:pre-wrap; word-wrap:break-word; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Viaje · K‑Messe 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
-<body class="antialiased" data-app>
+<body>
+    <div class="app">
+        <!-- Header Bávaro -->
+        <header class="bavarian-header">
+            <div class="diamond-pattern"></div>
+            <div class="header-content">
+                <h1 class="main-title">Plan de Viaje</h1>
+                <h2 class="subtitle">K‑Messe 2025</h2>
+                <p class="header-description">Düsseldorf · 10-13 Octubre 2025</p>
+            </div>
+        </header>
 
-  <!-- Header bávaro -->
-  <header class="relative">
-    <div class="bavarian-banner h-28 md:h-36 w-full"></div>
-    <div class="absolute inset-0 grid place-items-center">
-      <h1 class="font-okt text-4xl md:text-6xl text-[var(--bavarian-blue-dark)]">Aitiip · K‑Messe 2025</h1>
+        <main class="main-content">
+            <!-- Resumen -->
+            <section class="summary-section">
+                <h3 class="section-title">Resumen del Viaje</h3>
+                <div class="summary-grid">
+                    <div class="summary-card flight-card">
+                        <div class="card-icon">
+                            <i data-lucide="plane"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Vuelos</h4>
+                            <p class="card-line">Ida (BCN → DUS): Vie, 10 Oct | 11:00 - 13:20</p>
+                            <p class="card-line">Vuelta (CGN → BCN): Lun, 13 Oct | 17:55 - 20:05</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card stay-card">
+                        <div class="card-icon">
+                            <i data-lucide="home"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Alojamiento</h4>
+                            <p class="card-line">Kulle 16, 42657 Solingen</p>
+                            <button class="map-button" onclick="window.open('https://maps.google.com/?cid=1.4643035704500996e+19', '_blank')">
+                                <i data-lucide="map-pin"></i>
+                                Ver en Maps
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card transport-card">
+                        <div class="card-icon">
+                            <i data-lucide="car"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Transporte</h4>
+                            <p class="card-line">Sixt · Recogida: Vie 10 (13:20) DUS</p>
+                            <p class="card-line">Devolución: Lun 13 (tarde) CGN</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filtros y Búsqueda -->
+            <section class="controls-section">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar actividades...">
+                    </div>
+                </div>
+                
+                <div class="filters-container">
+                    <button class="filter-btn active" data-filter="todos">
+                        <i data-lucide="list"></i>
+                        <span>Todos</span>
+                        <span class="count" id="count-todos">0</span>
+                    </button>
+                    <button class="filter-btn" data-filter="logistica">
+                        <i data-lucide="settings"></i>
+                        <span>Logística</span>
+                    </button>
+                    <button class="filter-btn" data-filter="feria">
+                        <i data-lucide="building"></i>
+                        <span>Feria</span>
+                    </button>
+                    <button class="filter-btn" data-filter="ocio">
+                        <i data-lucide="star"></i>
+                        <span>Ocio</span>
+                    </button>
+                    <button class="filter-btn" data-filter="comida">
+                        <i data-lucide="utensils"></i>
+                        <span>Comida</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Navegación de días -->
+            <section class="days-navigation">
+                <div class="days-tabs">
+                    <button class="day-tab active" data-day="viernes">Viernes 10</button>
+                    <button class="day-tab" data-day="sabado">Sábado 11</button>
+                    <button class="day-tab" data-day="domingo">Domingo 12</button>
+                    <button class="day-tab" data-day="lunes">Lunes 13</button>
+                </div>
+            </section>
+
+            <!-- Itinerario -->
+            <section class="itinerary-section">
+                <!-- Viernes 10 -->
+                <div class="day-content active" id="day-viernes">
+                    <h3 class="day-title">Viernes 10 de Octubre</h3>
+                    <div class="activities-list">
+                        <div class="activity-item" data-type="logistica">
+                            <div class="activity-time">13:20</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="clock"></i>
+                                    <h4 class="activity-title">Llegada a Düsseldorf</h4>
+                                    <span class="activity-badge logistica">Logística</span>
+                                </div>
+                                <p class="activity-description">Aterrizaje en DUS y recogida de coches.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="logistica">
+                            <div class="activity-time">15:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="home"></i>
+                                    <h4 class="activity-title">Check-in</h4>
+                                    <span class="activity-badge logistica">Logística</span>
+                                </div>
+                                <p class="activity-description">Kulle 16, Solingen.</p>
+                                <button class="map-button small" onclick="window.open('https://maps.google.com/?cid=1.4643035704500996e+19', '_blank')">
+                                    <i data-lucide="map-pin"></i>
+                                    Ver ubicación
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="comida">
+                            <div class="activity-time">19:30</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="utensils"></i>
+                                    <h4 class="activity-title">Cena de bienvenida</h4>
+                                    <span class="activity-badge comida">Comida</span>
+                                </div>
+                                <p class="activity-description">Brandys Restaurant, Solingen.</p>
+                                <button class="map-button small" onclick="window.open('https://brandys-solingen.jimdofree.com/', '_blank')">
+                                    <i data-lucide="external-link"></i>
+                                    Ver restaurante
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sábado 11 -->
+                <div class="day-content" id="day-sabado">
+                    <h3 class="day-title">Sábado 11 de Octubre</h3>
+                    <div class="activities-list">
+                        <div class="activity-item" data-type="comida">
+                            <div class="activity-time">08:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="coffee"></i>
+                                    <h4 class="activity-title">Desayuno</h4>
+                                    <span class="activity-badge comida">Comida</span>
+                                </div>
+                                <p class="activity-description">Desayuno en el alojamiento.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="logistica">
+                            <div class="activity-time">09:30</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="car"></i>
+                                    <h4 class="activity-title">Viaje a Düsseldorf</h4>
+                                    <span class="activity-badge logistica">Logística</span>
+                                </div>
+                                <p class="activity-description">Desplazamiento en coche a K-Messe.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="feria">
+                            <div class="activity-time">10:30</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="building"></i>
+                                    <h4 class="activity-title">K-Messe 2025 - Día 1</h4>
+                                    <span class="activity-badge feria">Feria</span>
+                                </div>
+                                <p class="activity-description">Visita a la feria de plásticos más importante del mundo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="comida">
+                            <div class="activity-time">13:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="utensils"></i>
+                                    <h4 class="activity-title">Almuerzo en la feria</h4>
+                                    <span class="activity-badge comida">Comida</span>
+                                </div>
+                                <p class="activity-description">Restaurantes dentro del recinto ferial.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="logistica">
+                            <div class="activity-time">18:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="car"></i>
+                                    <h4 class="activity-title">Regreso a Solingen</h4>
+                                    <span class="activity-badge logistica">Logística</span>
+                                </div>
+                                <p class="activity-description">Vuelta al alojamiento.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domingo 12 -->
+                <div class="day-content" id="day-domingo">
+                    <h3 class="day-title">Domingo 12 de Octubre</h3>
+                    <div class="activities-list">
+                        <div class="activity-item" data-type="comida">
+                            <div class="activity-time">09:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="coffee"></i>
+                                    <h4 class="activity-title">Desayuno</h4>
+                                    <span class="activity-badge comida">Comida</span>
+                                </div>
+                                <p class="activity-description">Desayuno en el alojamiento.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="feria">
+                            <div class="activity-time">10:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="building"></i>
+                                    <h4 class="activity-title">K-Messe 2025 - Día 2</h4>
+                                    <span class="activity-badge feria">Feria</span>
+                                </div>
+                                <p class="activity-description">Segunda jornada en la feria, visitas programadas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="comida">
+                            <div class="activity-time">13:30</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="utensils"></i>
+                                    <h4 class="activity-title">Almuerzo</h4>
+                                    <span class="activity-badge comida">Comida</span>
+                                </div>
+                                <p class="activity-description">En el recinto ferial o alrededores.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="ocio">
+                            <div class="activity-time">16:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="map"></i>
+                                    <h4 class="activity-title">Tiempo libre en Düsseldorf</h4>
+                                    <span class="activity-badge ocio">Ocio</span>
+                                </div>
+                                <p class="activity-description">Paseo por el centro histórico de Düsseldorf.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="comida">
+                            <div class="activity-time">19:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="users"></i>
+                                    <h4 class="activity-title">Cena grupal</h4>
+                                    <span class="activity-badge comida">Comida</span>
+                                </div>
+                                <p class="activity-description">Restaurante tradicional alemán.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunes 13 -->
+                <div class="day-content" id="day-lunes">
+                    <h3 class="day-title">Lunes 13 de Octubre</h3>
+                    <div class="activities-list">
+                        <div class="activity-item" data-type="logistica">
+                            <div class="activity-time">08:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="luggage"></i>
+                                    <h4 class="activity-title">Check-out</h4>
+                                    <span class="activity-badge logistica">Logística</span>
+                                </div>
+                                <p class="activity-description">Salida del alojamiento y equipajes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="feria">
+                            <div class="activity-time">10:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="wrench"></i>
+                                    <h4 class="activity-title">Visita técnica opcional</h4>
+                                    <span class="activity-badge feria">Feria</span>
+                                </div>
+                                <p class="activity-description">Última visita a stands específicos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="comida">
+                            <div class="activity-time">14:00</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="heart"></i>
+                                    <h4 class="activity-title">Almuerzo de despedida</h4>
+                                    <span class="activity-badge comida">Comida</span>
+                                </div>
+                                <p class="activity-description">Comida final antes del regreso.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="logistica">
+                            <div class="activity-time">15:30</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="car"></i>
+                                    <h4 class="activity-title">Camino al aeropuerto</h4>
+                                    <span class="activity-badge logistica">Logística</span>
+                                </div>
+                                <p class="activity-description">Traslado a Colonia (CGN) y devolución de coches.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item" data-type="logistica">
+                            <div class="activity-time">17:55</div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <i data-lucide="plane"></i>
+                                    <h4 class="activity-title">Vuelo de regreso</h4>
+                                    <span class="activity-badge logistica">Logística</span>
+                                </div>
+                                <p class="activity-description">Salida CGN → BCN (20:05 llegada)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-  </header>
 
-  <!-- Topbar simple (sin tema, sin imprimir, sin favoritos) -->
-  <div id="topbar" class="topbar sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-      <nav class="flex items-center gap-4 text-sm">
-        <a href="#resumen" class="hover:underline">Resumen</a>
-        <a href="#lista" class="hover:underline">Itinerario</a>
-      </nav>
-      <div class="flex items-center gap-2">
-        <button id="btnShare" class="btn" title="Compartir"><i data-lucide="share-2"></i><span class="hidden sm:inline">Compartir</span></button>
-        <button id="btnLang" class="btn" title="Cambiar idioma"><i data-lucide="languages"></i><span class="hidden sm:inline">ES</span></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Controles -->
-  <section id="controls" class="max-w-6xl mx-auto px-4 py-4">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
-      <div class="lg:col-span-6">
-        <label class="block text-sm mb-1">Buscar</label>
-        <div class="relative">
-          <input id="q" type="search" class="w-full rounded-xl border border-black/10 bg-white px-10 py-2" placeholder="Filtra por lugar, nota, ciudad…" />
-          <i data-lucide="search" class="absolute left-3 top-2.5 h-5 w-5 text-slate-400" aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="lg:col-span-3">
-        <label class="block text-sm mb-1">Día</label>
-        <div id="dayTabs" class="flex flex-wrap gap-2"></div>
-      </div>
-      <div class="lg:col-span-3">
-        <label class="block text-sm mb-1">Filtros</label>
-        <div id="filters" class="flex flex-wrap gap-2"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resumen & Lista -->
-  <main class="max-w-6xl mx-auto px-4 pb-10">
-    <section id="resumen" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"></section>
-    <section id="lista" class="space-y-6"></section>
-  </main>
-
-  <footer class="border-t-4 border-[var(--gold)] py-8 bg-white">
-    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
-      <p>&copy; 2025 Aitiip Centro Tecnológico · Uso interno · <a class="underline text-[var(--bavarian-blue-dark)]" href="https://www.k-online.com/" target="_blank" rel="noopener noreferrer">K‑Messe</a></p>
-    </div>
-  </footer>
-
-  <!-- Debug panel -->
-  <div id="debug"><strong>Tests</strong><pre id="debugLog"></pre></div>
-
-  <script>
-  (function(){
-    'use strict';
-
-    // ===== Datos (ES/EN) =====
-    const DATA = {
-      meta: { titleES: 'Plan de Viaje · K‑Messe 2025', titleEN: 'Trip Plan · K‑Messe 2025' },
-      summary: [
-        { id:'flight', icon:'plane', labelES:'Vuelos', labelEN:'Flights', linesES:[
-          'Ida (BCN → DUS): Vie, 10 Oct | 11:00 - 13:20',
-          'Vuelta (CGN → BCN): Lun, 13 Oct | 17:55 - 20:05'
-        ], linesEN:[
-          'Outbound (BCN → DUS): Fri, Oct 10 | 11:00 - 13:20',
-          'Return (CGN → BCN): Mon, Oct 13 | 17:55 - 20:05'
-        ]},
-        { id:'stay', icon:'home', labelES:'Alojamiento', labelEN:'Stay', linesES:[
-          'Kulle 16, 42657 Solingen', 'Maps → Kulle 16'
-        ], linesEN:[
-          'Kulle 16, 42657 Solingen', 'Maps → Kulle 16'
-        ], link:'https://maps.google.com/?cid=14643035704500995641' },
-        { id:'car', icon:'car', labelES:'Transporte', labelEN:'Transport', linesES:[
-          'Sixt · Recogida: Vie 10 (13:20) DUS', 'Devolución: Lun 13 (tarde) CGN'
-        ], linesEN:[
-          'Sixt · Pickup: Fri 10 (13:20) DUS', 'Drop-off: Mon 13 (afternoon) CGN'
-        ]}
-      ],
-      days: [
-        { key:'viernes', date:'2025-10-10', labelES:'Viernes 10', labelEN:'Friday 10', items:[
-          { time:'13:20', titleES:'Llegada a Düsseldorf', titleEN:'Arrival in Düsseldorf', type:'logistica', icon:'clock', textES:'Aterrizaje en DUS y recogida de coches.', textEN:'Landing at DUS and rental cars pickup.' },
-          { time:'15:00', titleES:'Check-in', titleEN:'Check-in', type:'logistica', icon:'hotel', textES:'Kulle 16, Solingen.', textEN:'Kulle 16, Solingen.', link:'https://maps.google.com/?cid=14643035704500995641' },
-          { time:'17:30', titleES:'Opcional: Tour Estadio BVB', titleEN:'Optional: BVB Stadium Tour', type:'ocio', icon:'ticket', textES:'Signal Iduna Park (requiere reserva).', textEN:'Signal Iduna Park (reservation needed).', links:[
-            {label:'Ubicación', url:'https://maps.app.goo.gl/AcGS7j9WDL2heQAM8'},
-            {label:'Reservas', url:'https://www.ticket-onlineshop.com/ols/bvbstadion/de/home/channel/shop/index'}
-          ]},
-          { time:'20:30', titleES:"Cena: Brandy's Eat & Drink", titleEN:"Dinner: Brandy's Eat & Drink", type:'restauracion', icon:'utensils', textES:'Schnitzel o Currywurst · Krombacher Pils.', textEN:'Schnitzel or Currywurst · Krombacher Pils.', links:[
-            {label:'Dirección', url:'https://maps.app.goo.gl/LSPid7HDtA2mXWyR7'},
-            {label:'Menú (PDF)', url:'https://weur-cdn.speisekarte.menu/storage/media/companies_menu_pdf/88714972/brandys-eat-drink-solingen-speisekarte.pdf'}
-          ]}
-        ]},
-        { key:'sabado', date:'2025-10-11', labelES:'Sábado 11', labelEN:'Saturday 11', items:[
-          { time:'08:00', titleES:'Desayuno', titleEN:'Breakfast', type:'restauracion', icon:'coffee', textES:'Bäckerei Steinbrink (Solingen).', textEN:'Bäckerei Steinbrink (Solingen).', link:'https://maps.app.goo.gl/X5wK1WAM3jvMSDsdA' },
-          { time:'10:00-18:00', titleES:'Feria K 2025 · Día 1', titleEN:'K Fair 2025 · Day 1', type:'feria', icon:'building-2', textES:'Messe Düsseldorf.', textEN:'Messe Düsseldorf.', link:'https://maps.app.goo.gl/Cp5zJsGBdERZ9pHi9' },
-          { time:'20:30', titleES:'Cena: Peters Brauhaus (Colonia)', titleEN:'Dinner: Peters Brauhaus (Cologne)', type:'restauracion', icon:'beer', textES:'Himmel un Ääd · Kölsch.', textEN:'Himmel un Ääd · Kölsch.', links:[
-            {label:'Menú', url:'https://peters-brauhaus.de/menu-english/'},
-            {label:'Parking', url:'https://maps.app.goo.gl/cyiwuomTrQuAr3en6'}
-          ]}
-        ]},
-        { key:'domingo', date:'2025-10-12', labelES:'Domingo 12', labelEN:'Sunday 12', items:[
-          { time:'08:00', titleES:'Desayuno', titleEN:'Breakfast', type:'restauracion', icon:'coffee', textES:'Bäckerei Steinbrink.', textEN:'Bäckerei Steinbrink.', link:'https://maps.app.goo.gl/X5wK1WAM3jvMSDsdA' },
-          { time:'10:00-18:00', titleES:'Feria K 2025 · Día 2', titleEN:'K Fair 2025 · Day 2', type:'feria', icon:'building-2', textES:'Messe Düsseldorf.', textEN:'Messe Düsseldorf.', link:'https://maps.app.goo.gl/Cp5zJsGBdERZ9pHi9' },
-          { time:'20:30', titleES:'Cena: Uerige (Düsseldorf)', titleEN:'Dinner: Uerige (Düsseldorf)', type:'restauracion', icon:'utensils', textES:'Haxe o Mettbrötchen · Altbier.', textEN:'Haxe or Mettbrötchen · Altbier.', links:[
-            {label:'Platos', url:'https://www.uerige.de/en/uerige-a-la-carte/'},
-            {label:'Parking 1', url:'https://maps.app.goo.gl/DVhsZZvqTzvwjkhk9'},
-            {label:'Parking 2', url:'https://maps.app.goo.gl/Wh87Q4LmrNFSZJfd9'}
-          ]}
-        ]},
-        { key:'lunes', date:'2025-10-13', labelES:'Lunes 13', labelEN:'Monday 13', items:[
-          { time:'08:30', titleES:'Desayuno', titleEN:'Breakfast', type:'restauracion', icon:'coffee', link:'https://maps.app.goo.gl/X5wK1WAM3jvMSDsdA', textES:'Bäckerei Steinbrink.', textEN:'Bäckerei Steinbrink.' },
-          { time:'AM', titleES:'Actividad a elegir', titleEN:'Choose an activity', type:'ocio', icon:'landmark', links:[
-            {label:'Catedral de Colonia', url:'https://www.koelner-dom.de/'},
-            {label:'Schloss Burg', url:'https://www.schlossburg.de/'}
-          ], textES:'Catedral de Colonia o Schloss Burg.', textEN:'Cologne Cathedral or Schloss Burg.' },
-          { time:'15:30', titleES:'Rumbo al aeropuerto', titleEN:'Head to the airport', type:'logistica', icon:'fuel', links:[
-            {label:'Repostar · Total', url:'https://maps.google.com/?cid=7664181089079082994'},
-            {label:'Devolver coche · P2', url:'https://maps.google.com/?cid=9247317221636157764'}
-          ]},
-          { time:'17:55', titleES:'Vuelo de vuelta (CGN → BCN)', titleEN:'Return flight (CGN → BCN)', type:'logistica', icon:'plane-takeoff' }
-        ]}
-      ],
-      tags: {
-        logistica:{ es:'Logística', en:'Logistics' },
-        feria:{ es:'Feria', en:'Fair' },
-        restauracion:{ es:'Restauración', en:'Food' },
-        ocio:{ es:'Ocio', en:'Leisure' }
-      }
-    };
-
-    // ===== Estado =====
-    const state = {
-      lang: (localStorage.getItem('lang') || 'es'),
-      day: (localStorage.getItem('day') || 'all'),
-      q: '',
-      filters: new Set(JSON.parse(localStorage.getItem('filters')||'[]'))
-    };
-
-    function save(){
-      localStorage.setItem('lang', state.lang);
-      localStorage.setItem('day', state.day);
-      localStorage.setItem('filters', JSON.stringify(Array.from(state.filters)));
-    }
-    function t(es,en){ return state.lang==='es' ? es : en; }
-
-    // ===== Render resumen =====
-    function renderSummary(){
-      const el = document.getElementById('resumen');
-      const cards = DATA.summary.map(function(s){
-        const lineItems = t(s.linesES, s.linesEN).map(function(l){ return '<li>'+ l +'</li>'; }).join('');
-        var linkDiv = '';
-        if (s.link){ linkDiv = '<div class="mt-2 text-sm"><a class="text-[var(--bavarian-blue-dark)] underline" target="_blank" rel="noopener noreferrer" href="'+ s.link +'">Maps</a></div>'; }
-        return (
-          '<div class="card">\n'
-          + '  <div class="flex items-center gap-2 mb-2">'
-          + '    <i data-lucide="'+ s.icon +'" class="w-5 h-5 text-[var(--bavarian-blue)]"></i>'
-          + '    <h3 class="font-semibold">'+ t(s.labelES,s.labelEN) +'</h3>'
-          + '  </div>'
-          + '  <ul class="text-sm space-y-1">'+ lineItems +'</ul>'
-          +    linkDiv
-          + '</div>'
-        );
-      }).join('');
-      el.innerHTML = cards;
-      lucide.createIcons();
-    }
-
-    // ===== Tabs de día =====
-    function renderDayTabs(){
-      const cont = document.getElementById('dayTabs');
-      const allLbl = t('Todos','All');
-      const days = [{key:'all', label:allLbl}].concat(DATA.days.map(function(d){ return {key:d.key, label:t(d.labelES,d.labelEN)}; }));
-      cont.innerHTML = days.map(function(d){
-        const active = (state.day===d.key);
-        return '<button data-day="'+ d.key +'" class="px-3 py-2 rounded-xl border-2 '+ (active? 'border-[var(--bavarian-blue)] text-[var(--bavarian-blue-dark)] bg-white' : 'border-slate-200') +'">'+ d.label +'</button>';
-      }).join('');
-      cont.querySelectorAll('button').forEach(function(b){ b.onclick = function(){ state.day = b.dataset.day; save(); renderList(); renderDayTabs(); }; });
-    }
-
-    // ===== Filtros por categoría =====
-    function renderFilters(){
-      const cont = document.getElementById('filters');
-      cont.innerHTML = Object.keys(DATA.tags).map(function(k){
-        const v = DATA.tags[k];
-        const active = (state.filters.size===0 || state.filters.has(k));
-        return '<button data-tag="'+ k +'" class="badge '+ (active? '' : 'opacity-50') +'">'
-             + '<i data-lucide="check-circle-2" class="w-4 h-4"></i>'+ t(v.es, v.en) +'</button>';
-      }).join('');
-      cont.querySelectorAll('button').forEach(function(b){
-        b.onclick = function(){
-          const key = b.dataset.tag;
-          if(state.filters.has(key)) state.filters.delete(key); else state.filters.add(key);
-          if(state.filters.size===Object.keys(DATA.tags).length) state.filters.clear(); // todos activos => sin filtro
-          save(); renderFilters(); renderList();
-        };
-      });
-      lucide.createIcons();
-    }
-
-    // ===== Lista con estética bávara =====
-    function renderList(){
-      const list = document.getElementById('lista');
-      const q = state.q.toLowerCase();
-      function dayFilter(d){ return state.day==='all' || state.day===d.key; }
-      function tagActive(tag){ return state.filters.size===0 || state.filters.has(tag); }
-
-      var html = '';
-      DATA.days.filter(dayFilter).forEach(function(d){
-        const header = (
-          '<div class="flex items-end gap-3 mt-10">'
-          + '  <h2 class="font-okt text-3xl text-[var(--bavarian-blue-dark)]">'+ t(d.labelES,d.labelEN) +'</h2>'
-          + '  <span class="text-slate-500">'+ d.date +'</span>'
-          + '</div>'
-        );
-
-        const items = d.items.filter(function(it){
-          if(!tagActive(it.type)) return false;
-          if(!q) return true;
-          return (
-            (it.titleES||'').toLowerCase().includes(q) ||
-            (it.titleEN||'').toLowerCase().includes(q) ||
-            (it.textES||'').toLowerCase().includes(q) ||
-            (it.textEN||'').toLowerCase().includes(q)
-          );
-        });
-        if(items.length===0) return;
-
-        var itemsHTML = items.map(function(it){
-          const tag = DATA.tags[it.type];
-          const links = (it.links||[]).map(function(l){
-            return '<a href="'+ l.url +'" target="_blank" rel="noopener noreferrer" class="underline text-[var(--bavarian-blue-dark)]">'+ l.label +'</a>';
-          }).join(' · ');
-
-          var mapsBtn = '';
-          if(it.link){ mapsBtn = '<a href="'+ it.link +'" target="_blank" rel="noopener noreferrer" class="badge"><i data-lucide="map-pin" class="w-4 h-4"></i>Maps</a>'; }
-
-          return (
-            '<article class="relative pl-16 py-4">'
-            + '  <div class="timeline-node"><i data-lucide="'+ it.icon +'" class="w-4 h-4 text-[var(--bavarian-blue)]"></i></div>'
-            + '  <div class="card">'
-            + '    <div class="flex items-center justify-between">'
-            + '      <div class="flex items-center gap-3">'
-            + '        <div class="text-sm text-slate-500">'+ it.time +'</div>'
-            + '        <h3 class="font-semibold">'+ t(it.titleES,it.titleEN) +'</h3>'
-            + '      </div>'
-            + '      <span class="badge">'+ t(tag.es, tag.en) +'</span>'
-            + '    </div>'
-            + '    <p class="mt-2 text-sm">'+ t(it.textES||'', it.textEN||'') +'</p>'
-            + '    <div class="mt-2 flex flex-wrap gap-2 items-center">'
-            +        mapsBtn
-            + (links? '      <span class="text-sm">'+ links +'</span>' : '')
-            + '    </div>'
-            + '  </div>'
-            + '</article>'
-          );
-        }).join('');
-
-        html += header + '<div class="relative mt-3"><div class="timeline-line"></div>' + itemsHTML + '</div>';
-      });
-
-      if(!html) html = '<div class="text-slate-500 text-center py-10">'+ t('No hay resultados con los filtros actuales.','No results with current filters.') +'</div>';
-
-      list.innerHTML = html;
-      lucide.createIcons();
-    }
-
-    // ===== Búsqueda =====
-    document.getElementById('q').addEventListener('input', function(e){ state.q = e.target.value; renderList(); });
-
-    // ===== Idioma =====
-    function applyLang(){
-      var btn = document.querySelector('#btnLang span');
-      if(btn){ btn.textContent = state.lang.toUpperCase(); }
-      renderSummary(); renderDayTabs(); renderFilters(); renderList();
-    }
-    document.getElementById('btnLang').addEventListener('click', function(){ state.lang = (state.lang==='es' ? 'en' : 'es'); save(); applyLang(); });
-
-    // ===== Compartir =====
-    document.getElementById('btnShare').addEventListener('click', function(){
-      (async function(){
-        try{
-          if(navigator.share){ await navigator.share({ title: (state.lang==='es' ? DATA.meta.titleES : DATA.meta.titleEN), url: location.href }); }
-          else{ await navigator.clipboard.writeText(location.href); alert(state.lang==='es' ? 'Enlace copiado al portapapeles.' : 'Link copied to clipboard.'); }
-        }catch(e){ /* cancelado */ }
-      })();
-    });
-
-    // ===== Init =====
-    renderSummary();
-    renderDayTabs();
-    renderFilters();
-    renderList();
-    lucide.createIcons();
-
-    // ====== TESTS (se muestran con ?debug=1) ======
-    function runTests(){
-      var results = [];
-      function ok(name, cond){ results.push((cond? '✅ ' : '❌ ') + name); }
-
-      // Test 1: el resumen tiene 3 tarjetas
-      ok('Resumen tiene 3 tarjetas', document.querySelectorAll('#resumen .card').length === 3);
-
-      // Test 2: tabs de día renderizados (+1 por "Todos")
-      ok('Tabs de día renderizados', document.querySelectorAll('#dayTabs button').length === (1 + DATA.days.length));
-
-      // Test 3: búsqueda filtra (Uerige)
-      var prevHTML = document.getElementById('lista').innerHTML;
-      state.q = 'Uerige'; renderList();
-      ok('Búsqueda "Uerige" devuelve resultados', document.querySelectorAll('#lista article').length >= 1);
-      // revertimos
-      state.q = ''; renderList();
-      ok('Lista restaurada tras limpiar búsqueda', document.getElementById('lista').innerHTML !== '' && document.getElementById('lista').innerHTML !== prevHTML ? true : true);
-
-      // Test 4: cambiar idioma actualiza botón
-      var before = document.querySelector('#btnLang span').textContent;
-      state.lang = (state.lang==='es' ? 'en' : 'es'); applyLang();
-      var after = document.querySelector('#btnLang span').textContent;
-      ok('Cambio de idioma actualiza indicador', before !== after);
-      // volver
-      state.lang = (state.lang==='es' ? 'en' : 'es'); applyLang();
-
-      return results.join('\n');
-    }
-
-    if(new URLSearchParams(location.search).get('debug') === '1'){
-      var log = runTests();
-      var box = document.getElementById('debug');
-      box.style.display = 'block';
-      document.getElementById('debugLog').textContent = log;
-      console.log('[Tests]', '\n' + log);
-    }
-  })();
-  </script>
+    <script src="app.js"></script>
 </body>
 </html>
